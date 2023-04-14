@@ -108,9 +108,9 @@ class Account(DefaultAccount):
     To choose a path and write a tale that will live on beyond the veil.
 
     So step forward, and take your place In this universe of infinite space,
-    **Create a new soul** unique and true, and let your journey begin anew
+    |w|uCreate a new soul|n unique and true, and let your journey begin anew
 
-    If it suits your fancy, you may also **assume the guise of a pre-existing soul**
+    If it suits your fancy, you may also |w|uassume the guise of a pre-existing soul|n
     who has already been set upon their course, and dutifully trace their journey
     to unravel where their adventure may take you.
 
@@ -121,6 +121,8 @@ class Account(DefaultAccount):
     |wic <name>|n - enter the game as character (|wooc|n to get back here)
     |wic|n - enter the game as latest character controlled.
     """.strip()
+
+
 
     pass
 
