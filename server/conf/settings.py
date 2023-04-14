@@ -34,6 +34,11 @@ from evennia.settings_default import *
 # This is the name of your game. Make it catchy!
 SERVERNAME = "cosmologus"
 
+AUTO_CREATE_CHARACTER_WITH_ACCOUNT = False
+AUTO_PUPPET_ON_LOGIN = False
+MAX_NR_CHARACTERS = 3
+MAX_NR_SIMULTANEOUS_PUPPETS = 1
+
 
 ######################################################################
 # Settings given in secret_settings.py override those in this file.

@@ -91,6 +91,36 @@ class Account(DefaultAccount):
      at_server_shutdown()
 
     """
+    ooc_appearance_template = """
+    In a space beyond our own, where time and matter are unknown,
+    There stands a lotus, pure and bright, a symbol of the cosmic light.
+
+    Each petal holds a universe. A realm of endless tales and verse.
+    And in the center waiting there, you are unaware.
+
+    Some petals hold a world of magic, with spells that are truly fantastic.
+    Where you can cast and weave, and conjure up wonders to believe.
+
+    Others hold a world of mystery with secrets that are far from history.
+    Where you must explore and find the truth that lies within the mind.
+
+    But in the center of this cosmic flower, you sit, with the power,
+    To choose a path and write a tale that will live on beyond the veil.
+
+    So step forward, and take your place In this universe of infinite space,
+    **Create a new soul** unique and true, and let your journey begin anew
+
+    If it suits your fancy, you may also **assume the guise of a pre-existing soul**
+    who has already been set upon their course, and dutifully trace their journey
+    to unravel where their adventure may take you.
+
+    |whelp|n - more commands
+    |wpublic <text>|n - talk on public channel
+    |wcharcreate <name> [=description]|n - create new character
+    |wchardelete <name>|n - delete a character
+    |wic <name>|n - enter the game as character (|wooc|n to get back here)
+    |wic|n - enter the game as latest character controlled.
+    """.strip()
 
     pass
 
