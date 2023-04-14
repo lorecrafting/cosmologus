@@ -104,13 +104,13 @@ class CmdChooseHometown(BaseCommand):
                     }
                 </script>""", options = {"clear": True})
         elif args[0] == 'ashenholme':
-            self.msg(html="<br><br>You have chosen Verdantus!")
+            self.msg(html="<br><br>You have chosen Ashenholme!")
             # Create character and teleport to starting room for that town
         elif args[0] == 'verdantus':
             self.msg(html="<br><br>You have chosen Verdantus!")
              # Create character and teleport to starting room for that town
         elif args[0] == 'aurelia':
-            self.msg(html="<br><br>You have chosen Verdantus!")
+            self.msg(html="<br><br>You have chosen Aurelia!")
              # Create character and teleport to starting room for that town
 
 # -------------------------------------------------------------
