@@ -54,7 +54,7 @@ class CmdNewChar(BaseCommand):
                 Evennia.msg("text", name);
                 console.log("hi");
             }
-	    </script>""")
+	    </script>""", options = {"clear": True})
          # add command to the account: able to pick hometown.  Then remove that hometown command after
          # player picks hometown.  Store the name in an nDB, like self.ndb.new_char_name dont forget to clear it after picking hometown
 
