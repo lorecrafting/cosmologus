@@ -63,44 +63,55 @@ class CmdChooseHometown(BaseCommand):
     locks = "cmd:pperm(Player)"
 
     def func(self):
-        self.msg(html="""
-            <br><br>
-            From the cosmic void, you see three visions aglow,
-            Each calling out to you, with its tale to bestow.
+        args = self.args.split()
+        if len(args) == 0:
+            self.msg(html="""
+                <br><br>
+                From the cosmic void, you see three visions aglow,
+                Each calling out to you, with its tale to bestow.
 
-            <br><br>
-            <span style="color:white"><u></b>Ashenholme</b></u></span>, besieged by dark forces, cries out in despair,
-            Its people plagued by sickness, poverty, and warfare.
-            Their once-thriving home now reduced to rubble and decay,
-            They plead for a hero to rise and show them the way.
+                <br><br>
+                <span style="color:white"><u></b>Ashenholme</b></u></span>, besieged by dark forces, cries out in despair,
+                Its people plagued by sickness, poverty, and warfare.
+                Their once-thriving home now reduced to rubble and decay,
+                They plead for a hero to rise and show them the way.
 
-            <br><br>
-            <span style="color:white"><u></b>Verdantus</b></u></span>, nestled in a once-lush forest serene,
-            Now barren, withered, and lifeless, a stark and desolate scene.
-            A blight has taken hold, and nature's beauty fades away,
-            It calls out for a savior, to heal and restore the land to its former sway.
+                <br><br>
+                <span style="color:white"><u></b>Verdantus</b></u></span>, nestled in a once-lush forest serene,
+                Now barren, withered, and lifeless, a stark and desolate scene.
+                A blight has taken hold, and nature's beauty fades away,
+                It calls out for a savior, to heal and restore the land to its former sway.
 
-            <br><br>
-            <span style="color:white"><u></b>Aurelia</b></u></span>, the temple of scholars, with knowledge as its treasure,
-            A place of learning, wisdom, and intellectual pleasure.
-            Its secrets and mysteries beckon you to explore,
-            To unravel its truths, and unlock knowledge's door.
+                <br><br>
+                <span style="color:white"><u></b>Aurelia</b></u></span>, the temple of scholars, with knowledge as its treasure,
+                A place of learning, wisdom, and intellectual pleasure.
+                Its secrets and mysteries beckon you to explore,
+                To unravel its truths, and unlock knowledge's door.
 
-            <br><br>
-            As you ponder, which vision to heed,
-            Each vision grows clearer, its call, a potent seed.
-            Your choice will determine the fate of the land.
+                <br><br>
+                As you ponder, which vision to heed,
+                Each vision grows clearer, its call, a potent seed.
+                Your choice will determine the fate of the land.
 
-            <script>
-                function handleSubmit(event) {
-                    event.preventDefault();
-                    const inputs = event.target.getElementsByTagName("input");
-                    const nameInput = Array.from(inputs).find(input => input.type === "text");
-                    const name = nameInput.value;
-                    Evennia.msg("text", name);
-                    console.log("hi");
-                }
-            </script>""", options = {"clear": True})
+                <script>
+                    function handleSubmit(event) {
+                        event.preventDefault();
+                        const inputs = event.target.getElementsByTagName("input");
+                        const nameInput = Array.from(inputs).find(input => input.type === "text");
+                        const name = nameInput.value;
+                        Evennia.msg("text", name);
+                        console.log("hi");
+                    }
+                </script>""", options = {"clear": True})
+        elif args[0] == 'ashenholme':
+            self.msg(html="<br>You have chosen Verdantus!")
+            # Create character and teleport to starting room for that town
+        elif args[0] == 'verdantus':
+            self.msg(html="<br>You have chosen Verdantus!")
+             # Create character and teleport to starting room for that town
+        elif args[0] == 'aurelia':
+            self.msg(html="<br>You have chosen Verdantus!")
+             # Create character and teleport to starting room for that town
 
 # -------------------------------------------------------------
 #
