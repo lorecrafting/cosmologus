@@ -32,6 +32,14 @@ class Command(BaseCommand):
     #
     pass
 
+class CmdNewChar(BaseCommand):
+
+    key = "newchar"
+    locks = "cmd:pperm(Player)"
+
+    def func(self):
+        self.msg('OMG NEW CHARACTER???')
+
 
 # -------------------------------------------------------------
 #
