@@ -38,7 +38,9 @@ class CmdNewChar(BaseCommand):
     locks = "cmd:pperm(Player)"
 
     def func(self):
-        self.msg('OMG NEW CHARACTER???')
+        self.msg(html='<br>Omg what will you name the new soul as? <form><input class"inputfield" type="text"><input onclick="function(){console.log("hi")}" type="submit"></form>')
+         # add command to the account: able to pick hometown.  Then remove that hometown command after
+         # player picks hometown.  Store the name in an nDB, like self.ndb.new_char_name dont forget to clear it after picking hometown
 
 
 # -------------------------------------------------------------
