@@ -38,25 +38,21 @@ class CmdNewChar(BaseCommand):
     locks = "cmd:pperm(Player)"
 
     def func(self):
-        self.msg(html="""
+
+        handleSubmit = """
+           event.preventDefault();console.log(event);plugin_handler.onSend('ohai&nbsp;'+event.target[0].value)
+        """
+
+        self.msg(html=f"""
             <br>What is the name of the new soul?
-            <form onsubmit="handleSubmit(event)">
+            <form onsubmit={handleSubmit}">
                 <input class="inputfield" type="text">
                 <input  type="submit">
-            </form>
-
-            <script>
-                function handleSubmit(event) {
-                    event.preventDefault();
-                    const inputs = event.target.getElementsByTagName("input");
-                    const nameInput = Array.from(inputs).find(input => input.type === "text");
-                    const name = nameInput.value;
-                    plugin_handler.onSend(`newchar ${name}`);
-                }
-            </script>""", options = {"clear": True})
+            </form>""", options = {"clear": True})
             # add command to the account: able to pick hometown.  Then remove that hometown command after
             # player picks hometown.  Store the name in an nDB, like self.ndb.new_char_name dont forget to clear it after picking hometown
 
+class CmdSaveCharname(BaseCommand):
 class CmdChooseHometown(BaseCommand):
     key = "choosehometown"
     locks = "cmd:pperm(Player)"
