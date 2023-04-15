@@ -113,17 +113,13 @@ class Account(DefaultAccount):
     If it suits your fancy, you may also |w|uassume the guise of a pre-existing soul|n
     who has already been set upon their course, and dutifully trace their journey
     to unravel where their adventure may take you.
-
-    |whelp|n - more commands
-    |wpublic <text>|n - talk on public channel
-    |wcharcreate <name> [=description]|n - create new character
-    |wchardelete <name>|n - delete a character
-    |wic <name>|n - enter the game as character (|wooc|n to get back here)
-    |wic|n - enter the game as latest character controlled.
     """.strip()
-
-
-
+    # |whelp|n - more commands
+    # |wpublic <text>|n - talk on public channel
+    # |wcharcreate <name> [=description]|n - create new character
+    # |wchardelete <name>|n - delete a character
+    # |wic <name>|n - enter the game as character (|wooc|n to get back here)
+    # |wic|n - enter the game as latest character controlled.
     pass
 
 
