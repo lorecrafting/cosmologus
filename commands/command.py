@@ -39,7 +39,7 @@ class CmdNewChar(BaseCommand):
 
     def func(self):
         self.msg(html="""
-            <br>Omg what will you name the new soul as?
+            <br>What is the name of the new soul?
             <form onsubmit="handleSubmit(event)">
                 <input class="inputfield" type="text">
                 <input  type="submit">
