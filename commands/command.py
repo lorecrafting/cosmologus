@@ -38,19 +38,11 @@ class CmdShowNewCharnameForm(BaseCommand):
     locks = "cmd:pperm(Player)"
 
     def func(self):
-
-        handleSubmit = """
-           event.preventDefault();console.log(event);plugin_handler.onSend('showhometownmenuwithcharname&nbsp;'+event.target[0].value)
-        """
-
-        self.msg(html=f"""
+        self.msg(html="""
             <br>What is the name of the new soul?
-            <form onsubmit={handleSubmit}">
-                <input class="inputfield" type="text">
-                <input  type="submit">
-            </form>""", options = {"clear": True})
-            # add command to the account: able to pick hometown.  Then remove that hometown command after
-            # player picks hometown.  Store the name in an nDB, like self.ndb.new_char_name dont forget to clear it after picking hometown
+                <input id="newcharname" class="inputfield" type="text">
+                <span onclick="console.log('hi');plugin_handler.onSend('showhometownmenuwithcharname ' + document.getElementById('newcharname').value)">Submit</span>
+            """, options = {"clear": True})
 class CmdShowHometownMenuWithCharname(BaseCommand):
     key = "showhometownmenuwithcharname"
     locks = "cmd:pperm(Player)"
@@ -63,7 +55,7 @@ class CmdShowHometownMenuWithCharname(BaseCommand):
             Each calling out to you, with its tale to bestow.
 
             <br><br>
-            <span onclick=""style="color:white"><u></b>Ashenholme</b></u></span>, besieged by dark forces, cries out in despair,
+            <span onclick="plugin_handler.onSend('showhometownmenuwithcharname hi')"style="color:white"><u></b>Ashenholme</b></u></span>, besieged by dark forces, cries out in despair,
             Its people plagued by sickness, poverty, and warfare.
             Their once-thriving home now reduced to rubble and decay,
             They plead for a hero to rise and show them the way.
