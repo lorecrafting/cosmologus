@@ -49,13 +49,14 @@ class CmdShowHometownMenuWithCharname(BaseCommand):
 
     def func(self):
         args = self.args.split()
-        self.msg(html="""
+        name = args[0]
+        self.msg(html=f"""
             <br><br>
             From the cosmic void, you see three visions aglow,
             Each calling out to you, with its tale to bestow.
 
             <br><br>
-            <span onclick="plugin_handler.onSend('showhometownmenuwithcharname hi')"style="color:white"><u></b>Ashenholme</b></u></span>, besieged by dark forces, cries out in despair,
+            <a onclick="plugin_handler.onSend('choosehometownwithnewcharname ashenholme {name}')"style="color:white"><u></b>Ashenholme</b></u></a>, besieged by dark forces, cries out in despair,
             Its people plagued by sickness, poverty, and warfare.
             Their once-thriving home now reduced to rubble and decay,
             They plead for a hero to rise and show them the way.
@@ -88,7 +89,7 @@ class CmdChooseHometownWithNewCharname(BaseCommand):
         hometown = args[0]
 
         if hometown == 'ashenholme':
-            self.msg(html=f"<br><br>Let it be known that a new soul by the name of {newcharname} has incarnated into Ashenholme!")
+            self.msg(html=f"<br><br>Let it be known that a new soul by the name of {newcharname} has incarnated into Ashenholme!", options = {"clear": True})
             # Create character and teleport to starting room for that town
         elif hometown == 'verdantus':
              self.msg(html=f"<br><br>Let it be known that a new soul by the name of {newcharname} has incarnated into Verdantus!")
