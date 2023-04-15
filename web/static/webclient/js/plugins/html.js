@@ -19,7 +19,6 @@ let html_plugin = (function () {
     //
     var html = function (args, kwargs) {
         if (kwargs?.options?.clear === true) {
-            console.log('clearme')
             const msgWindow = document.getElementById("messagewindow");
             msgWindow.innerHTML = '';
         }
