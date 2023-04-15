@@ -32,9 +32,9 @@ class Command(BaseCommand):
     #
     pass
 
-class CmdNewChar(BaseCommand):
+class CmdNewCharnameForm(BaseCommand):
 
-    key = "newchar"
+    key = "newcharnameform"
     locks = "cmd:pperm(Player)"
 
     def func(self):
@@ -52,7 +52,6 @@ class CmdNewChar(BaseCommand):
             # add command to the account: able to pick hometown.  Then remove that hometown command after
             # player picks hometown.  Store the name in an nDB, like self.ndb.new_char_name dont forget to clear it after picking hometown
 
-class CmdSaveCharname(BaseCommand):
 class CmdChooseHometown(BaseCommand):
     key = "choosehometown"
     locks = "cmd:pperm(Player)"
