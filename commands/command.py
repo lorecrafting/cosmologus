@@ -51,8 +51,7 @@ class CmdNewChar(BaseCommand):
                     const inputs = event.target.getElementsByTagName("input");
                     const nameInput = Array.from(inputs).find(input => input.type === "text");
                     const name = nameInput.value;
-                    Evennia.msg("text", name);
-                    console.log("hi");
+                    plugin_handler.onSend(`newchar ${name}`);
                 }
             </script>""", options = {"clear": True})
             # add command to the account: able to pick hometown.  Then remove that hometown command after
