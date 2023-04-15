@@ -108,7 +108,7 @@ class Account(DefaultAccount):
     To choose a path and write a tale that will live on beyond the veil.
 
     So step forward, and take your place In this universe of infinite space,
-    |w|u|lcnewcharnameform|ltCreate a new soul|n|le unique and true, and let your journey begin anew
+    |w|u|lcshownewcharnameform|ltCreate a new soul|n|le unique and true, and let your journey begin anew
 
     If it suits your fancy, you may also |w|uassume the guise of a pre-existing soul|n
     who has already been set upon their course, and dutifully trace their journey
