@@ -40,8 +40,10 @@ class CmdShowNewCharnameForm(BaseCommand):
     def func(self):
         self.msg(html="""
             <br>What is the name of the new soul?
-                <input id="newcharname" class="inputfield" type="text">
+            <div>
+                <input id="newcharname" class="inputfield form-control" type="text">
                 <span onclick="console.log('hi');plugin_handler.onSend('showhometownmenuwithcharname ' + document.getElementById('newcharname').value)">Submit</span>
+            </div>
             """, options = {"clear": True})
 class CmdShowHometownMenuWithCharname(BaseCommand):
     key = "showhometownmenuwithcharname"
@@ -56,19 +58,19 @@ class CmdShowHometownMenuWithCharname(BaseCommand):
             Each calling out to you, with its tale to bestow.
 
             <br><br>
-            <a onclick="plugin_handler.onSend('choosehometownwithnewcharname ashenholme {name}')"style="color:white"><u></b>Ashenholme</b></u></a>, besieged by dark forces, cries out in despair,
+            <span onclick="plugin_handler.onSend('choosehometownwithnewcharname ashenholme {name}')"style="color:white"><u></b>Ashenholme</b></u></span>, besieged by dark forces, cries out in despair,
             Its people plagued by sickness, poverty, and warfare.
             Their once-thriving home now reduced to rubble and decay,
             They plead for a hero to rise and show them the way.
 
             <br><br>
-            <span style="color:white"><u></b>Verdantus</b></u></span>, nestled in a once-lush forest serene,
+            <span onclick="plugin_handler.onSend('choosehometownwithnewcharname verdantus {name}')" style="color:white"><u></b>Verdantus</b></u></span>, nestled in a once-lush forest serene,
             Now barren, withered, and lifeless, a stark and desolate scene.
             A blight has taken hold, and nature's beauty fades away,
             It calls out for a savior, to heal and restore the land to its former sway.
 
             <br><br>
-            <span style="color:white"><u></b>Aurelia</b></u></span>, the temple of scholars, with knowledge as its treasure,
+            <span onclick="plugin_handler.onSend('choosehometownwithnewcharname aurelia {name}')" style="color:white"><u></b>Aurelia</b></u></span>, the temple of scholars, with knowledge as its treasure,
             A place of learning, wisdom, and intellectual pleasure.
             Its secrets and mysteries beckon you to explore,
             To unravel its truths, and unlock knowledge's door.
