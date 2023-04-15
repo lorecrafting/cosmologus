@@ -58,19 +58,26 @@ class CmdShowHometownMenuWithCharname(BaseCommand):
             Each calling out to you, with its tale to bestow.
 
             <br><br>
-            <span onclick="plugin_handler.onSend('choosehometownwithnewcharname ashenholme {name}')"style="color:white"><u></b>Ashenholme</b></u></span>, besieged by dark forces, cries out in despair,
+            <span onclick="plugin_handler.onSend('choosehometownwithnewcharname ashenholme {name}')"
+                  style="color:white;cursor:pointer"><u></b>Ashenholme</b></u>
+            </span>, besieged by dark forces, cries out in despair,
             Its people plagued by sickness, poverty, and warfare.
             Their once-thriving home now reduced to rubble and decay,
             They plead for a hero to rise and show them the way.
 
             <br><br>
-            <span onclick="plugin_handler.onSend('choosehometownwithnewcharname verdantus {name}')" style="color:white"><u></b>Verdantus</b></u></span>, nestled in a once-lush forest serene,
+            <span style="cursor:pointer;"
+                  onclick="plugin_handler.onSend('choosehometownwithnewcharname verdantus {name}')"
+                  style="color:white;cursor:pointer"><u></b>Verdantus</b></u>
+            </span>, nestled in a once-lush forest serene,
             Now barren, withered, and lifeless, a stark and desolate scene.
             A blight has taken hold, and nature's beauty fades away,
             It calls out for a savior, to heal and restore the land to its former sway.
 
             <br><br>
-            <span onclick="plugin_handler.onSend('choosehometownwithnewcharname aurelia {name}')" style="color:white"><u></b>Aurelia</b></u></span>, the temple of scholars, with knowledge as its treasure,
+            <span onclick="plugin_handler.onSend('choosehometownwithnewcharname aurelia {name}')"
+                  style="color:white;cursor:pointer"><u></b>Aurelia</b></u>
+            </span>, the temple of scholars, with knowledge as its treasure,
             A place of learning, wisdom, and intellectual pleasure.
             Its secrets and mysteries beckon you to explore,
             To unravel its truths, and unlock knowledge's door.

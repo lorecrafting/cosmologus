@@ -92,7 +92,7 @@ class Account(DefaultAccount):
 
     """
     ooc_appearance_template = """
-    In a space beyond our own, where time and matter are unknown,
+    |nIn a space beyond our own, where time and matter are unknown,
     There stands a lotus, pure and bright, a symbol of the cosmic light.
 
     Each petal holds a universe. A realm of endless tales and verse.
