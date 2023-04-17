@@ -2,19 +2,27 @@ from evennia.commands.command import Command as BaseCommand
 from evennia.utils.evmenu import EvMenu, get_input
 
 
-
 def node_choose_name(caller, raw_input, **kwargs):
-    text = "urname?"
+    text = ""
 
     options = {"key": "_default",
-            "goto": "node_show_hometowns"}
+               "goto": "node_show_hometowns"}
+
+    caller.msg(html="""
+            <br>What is the name of the new soul?
+            <div>
+                <input id="newcharname" class="inputfield form-control" type="text">
+                <span onclick="console.log('hi');plugin_handler.onSend(document.getElementById('newcharname').value)">Submit</span>
+            </div>
+            """, options={"clear": True})
 
     return text, options
+
 
 def node_show_hometowns(caller, raw_input, **kwargs):
     text = "From the cosmic void, you see three visions aglow, Each calling out to you, with its tale to bestow."
 
-    name = raw_input.strip()
+    caller.msg(html="blap", options={"clear": True})
     options = (
         {"key": "Ashenholme",
          "desc": "ashendesc",
@@ -61,19 +69,21 @@ def node_show_hometowns(caller, raw_input, **kwargs):
 
     return text, options
 
+
 def _handle_hometown(caller, raw_input, **kwargs):
     hometown = kwargs.get("hometown")
     caller.msg(f"You chose {hometown}")
     return "node_end"
 
+
 def node_end(caller, raw_input, **kwargs):
     text = "This da end!"
     return text, None
+
+
 class CmdCharGen(BaseCommand):
     key = "chargen"
     locks = "cmd:pperm(Player)"
-
-
 
     def func(self):
 
