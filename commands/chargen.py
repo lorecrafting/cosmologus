@@ -22,6 +22,7 @@ def node_choose_name(caller, raw_input, **kwargs):
 def node_show_hometowns(caller, raw_input, **kwargs):
     text = "From the cosmic void, you see three visions aglow, Each calling out to you, with its tale to bestow."
 
+    name = raw_input.strip()
     caller.msg(html="blap", options={"clear": True})
     options = (
         {"key": "Ashenholme",
