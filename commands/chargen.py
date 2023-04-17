@@ -1,10 +1,9 @@
 from evennia.commands.command import Command as BaseCommand
-from evennia.utils.evmenu import EvMenu, get_input
+from evennia.utils.evmenu import EvMenu
 
 
 def node_choose_name(caller, raw_input, **kwargs):
     text = ""
-
     options = {"key": "_default",
                "goto": "node_show_hometowns"}
 
@@ -18,62 +17,42 @@ def node_choose_name(caller, raw_input, **kwargs):
 
     return text, options
 
-
 def node_show_hometowns(caller, raw_input, **kwargs):
     text = "From the cosmic void, you see three visions aglow, Each calling out to you, with its tale to bestow."
 
     name = raw_input.strip()
-    caller.msg(html="blap", options={"clear": True})
+    # Validate name and send back to name generation node.  Update name generation node to
+    # be dynamic depending on if it has an existing name that needs fixing or not
+
+    caller.msg(html="", options={"clear": True})
     options = (
         {"key": "Ashenholme",
-         "desc": "ashendesc",
-         "goto": (_handle_hometown, {"hometown": "ashenholm"})},
+         "desc": """A town besieged by dark forces, cries out in despair,
+                    Its people plagued by sickness, poverty, and warfare.
+                    Their once-thriving home now reduced to rubble and decay,
+                    They plead for a hero to rise and show them the way.\n""",
+         "goto": ("_create_new_char_in_hometown", {"hometown": "ashenholm", "name": name})},
         {"key": "Verdantus",
-         "desc": "verdesc.",
-         "goto": (_handle_hometown, {"hometown": "verdantus"})},
+         "desc": """An abode nestled in a once-lush forest serene,
+                    Now barren, withered, and lifeless, a stark and desolate scene.
+                    A blight has taken hold, and nature's beauty fades away,
+                    It calls out for a savior, to heal and restore the land to its former sway.\n""",
+         "goto": ("_create_new_char_in_hometown", {"hometown": "verdantus", "name": name})},
         {"key": "Aurelia",
-         "desc": "aurelia desc",
-         "goto": (_handle_hometown, {"hometown": "aurelia"})},
+         "desc": """A temple of scholars, with knowledge as its treasure,
+                    A place of learning, wisdom, and intellectual pleasure.
+                    Its secrets and mysteries beckon you to explore,
+                    To unravel its truths, and unlock knowledge's door.\n""",
+         "goto": ("_create_new_char_in_hometown", {"hometown": "aurelia", "name": name})},
     )
-
-    caller.msg(name)
-    # caller.msg(html=f"""
-    #     <br><br>
-    #     <span onclick="plugin_handler.onSend('ashenholm')"
-    #             style="color:white;cursor:pointer"><u></b>Ashenholme</b></u>
-    #     </span>, besieged by dark forces, cries out in despair,
-    #     Its people plagued by sickness, poverty, and warfare.
-    #     Their once-thriving home now reduced to rubble and decay,
-    #     They plead for a hero to rise and show them the way.
-
-    #     <br><br>
-    #     <span style="cursor:pointer;"
-    #             onclick="plugin_handler.onSend('verdantus')"
-    #             style="color:white;cursor:pointer"><u></b>Verdantus</b></u>
-    #     </span>, nestled in a once-lush forest serene,
-    #     Now barren, withered, and lifeless, a stark and desolate scene.
-    #     A blight has taken hold, and nature's beauty fades away,
-    #     It calls out for a savior, to heal and restore the land to its former sway.
-
-    #     <br><br>
-    #     <span onclick="plugin_handler.onSend('aurelia {name}')"
-    #             style="color:white;cursor:pointer"><u></b>Aurelia</b></u>
-    #     </span>, the temple of scholars, with knowledge as its treasure,
-    #     A place of learning, wisdom, and intellectual pleasure.
-    #     Its secrets and mysteries beckon you to explore,
-    #     To unravel its truths, and unlock knowledge's door.
-
-    #     <br><br>
-    #     As you ponder, which vision to heed,
-    #     Each vision grows clearer, its call, a potent seed.
-    #     Your choice will determine the fate of the land.""")
 
     return text, options
 
 
-def _handle_hometown(caller, raw_input, **kwargs):
+def _create_new_char_in_hometown(caller, raw_input, **kwargs):
     hometown = kwargs.get("hometown")
-    caller.msg(f"You chose {hometown}")
+    name = kwargs.get("name")
+    caller.msg(f"You chose {hometown} with the name of {name}")
     return "node_end"
 
 
@@ -91,6 +70,7 @@ class CmdCharGen(BaseCommand):
         menu_nodes = {
             "node_choose_name": node_choose_name,
             "node_show_hometowns": node_show_hometowns,
+            "_create_new_char_in_hometown": _create_new_char_in_hometown,
             "node_end": node_end,
         }
 
