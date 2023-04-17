@@ -21,8 +21,11 @@ possibility to connect with a guest account. The setting file accepts
 several more options for customizing the Guest account system.
 
 """
+from django.conf import settings
+_MAX_NR_CHARACTERS = settings.MAX_NR_CHARACTERS
 
 from evennia.accounts.accounts import DefaultAccount, DefaultGuest
+from evennia.utils.utils import is_iter
 
 
 class Account(DefaultAccount):
@@ -92,27 +95,21 @@ class Account(DefaultAccount):
 
     """
     ooc_appearance_template = """
-    |nIn a space beyond our own, where time and matter are unknown,
-    There stands a lotus, pure and bright, a symbol of the cosmic light.
+    |n|nIn a space beyond our own, where time and matter are unknown, there stands a lotus, pure and bright, a symbol of the cosmic light.
 
-    Each petal holds a universe. A realm of endless tales and verse.
-    And in the center waiting there, you are unaware.
+    Each petal holds a universe. A realm of endless tales and verse. And in the center waiting there, you are unaware.
 
-    Some petals hold a world of magic, with spells that are truly fantastic.
-    Where you can cast and weave, and conjure up wonders to believe.
+    Some petals hold a world of magic, with spells that are truly fantastic. Where you can cast and weave, and conjure up wonders to believe.
 
-    Others hold a world of mystery with secrets that are far from history.
-    Where you must explore and find the truth that lies within the mind.
+    Others hold a world of mystery with secrets that are far from history. Where you must explore and find the truth that lies within the mind.
 
-    But in the center of this cosmic flower, you sit, with the power,
-    To choose a path and write a tale that will live on beyond the veil.
+    But in the center of this cosmic flower, you sit, with the power, to choose a path and write a tale that will live on beyond the veil.
 
-    So step forward, and take your place In this universe of infinite space,
-    |w|u|lcshownewcharnameform|ltCreate a new soul|n|le unique and true, and let your journey begin anew
+    So step forward, and take your place In this universe of infinite space
 
-    If it suits your fancy, you may also |w|uassume the guise of a pre-existing soul|n
-    who has already been set upon their course, and dutifully trace their journey
-    to unravel where their adventure may take you.
+    {characters}
+
+    If you so please, |w|u|lcshownewcharnameform|ltCreate a new soul|n|le unique and true, and let your journey begin anew.
     """.strip()
     # |whelp|n - more commands
     # |wpublic <text>|n - talk on public channel
@@ -120,6 +117,105 @@ class Account(DefaultAccount):
     # |wchardelete <name>|n - delete a character
     # |wic <name>|n - enter the game as character (|wooc|n to get back here)
     # |wic|n - enter the game as latest character controlled.
+
+    def at_look(self, target=None, session=None, **kwargs):
+        """
+        Called when this object executes a look. It allows to customize
+        just what this means.
+
+        Args:
+            target (Object or list, optional): An object or a list
+                objects to inspect. This is normally a list of characters.
+            session (Session, optional): The session doing this look.
+            **kwargs (dict): Arbitrary, optional arguments for users
+                overriding the call (unused by default).
+
+        Returns:
+            look_string (str): A prepared look string, ready to send
+                off to any recipient (usually to ourselves)
+
+        """
+
+        if target and not is_iter(target):
+            # single target - just show it
+            if hasattr(target, "return_appearance"):
+                return target.return_appearance(self)
+            else:
+                return f"{target} has no in-game appearance."
+
+        # multiple targets - this is a list of characters
+        characters = list(tar for tar in target if tar) if target else []
+        ncars = len(characters)
+        sessions = self.sessions.all()
+        nsess = len(sessions)
+
+        if not nsess:
+            # no sessions, nothing to report
+            return ""
+
+        # header text
+        txt_header = f"Account |g{self.name}|n (you are Out-of-Character)"
+
+        # sessions
+        sess_strings = []
+        for isess, sess in enumerate(sessions):
+            ip_addr = sess.address[0] if isinstance(
+                sess.address, tuple) else sess.address
+            addr = f"{sess.protocol_key} ({ip_addr})"
+            sess_str = (
+                f"|w* {isess + 1}|n"
+                if session and session.sessid == sess.sessid
+                else f"  {isess + 1}"
+            )
+
+            sess_strings.append(f"{sess_str} {addr}")
+
+        txt_sessions = "|wConnected session(s):|n\n" + "\n".join(sess_strings)
+
+        if not characters:
+            txt_characters = "You don't have a character yet. Use |wcharcreate|n."
+        else:
+            max_chars = (
+                "unlimited"
+                if self.is_superuser or _MAX_NR_CHARACTERS is None
+                else _MAX_NR_CHARACTERS
+            )
+
+            char_strings = []
+            for char in characters:
+                csessions = char.sessions.all()
+                if csessions:
+                    for sess in csessions:
+                        # character is already puppeted
+                        sid = sess in sessions and sessions.index(sess) + 1
+                        if sess and sid:
+                            char_strings.append(
+                                f" - |G{char.name}|n [{', '.join(char.permissions.all())}] "
+                                f"(played by you in session {sid})"
+                            )
+                        else:
+                            char_strings.append(
+                                f" - |R{char.name}|n [{', '.join(char.permissions.all())}] "
+                                "(played by someone else)"
+                            )
+                else:
+                    # character is "free to puppet"
+                    char_strings.append(
+                        f"|w|u|lcic {char.name}|lt  {char.name} [{', '.join(char.permissions.all())}]|n|le ")
+
+            txt_characters = (
+                f"Inhabit the {ncars} of {max_chars} different souls available:\n"
+                + "\n".join(char_strings)
+
+
+            )
+        return self.ooc_appearance_template.format(
+            header=txt_header,
+            sessions=txt_sessions,
+            characters=txt_characters,
+            footer="",
+        )
+
     pass
 
 
