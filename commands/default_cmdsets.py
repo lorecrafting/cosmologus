@@ -15,7 +15,7 @@ own cmdsets by inheriting from them or directly from `evennia.CmdSet`.
 """
 
 from evennia import default_cmds
-from commands.command import CmdShowNewCharnameForm, CmdShowHometownMenuWithCharname, CmdChooseHometownWithNewCharname
+from commands.command import CmdShowNewCharnameForm, CmdShowHometownMenuWithCharname, CmdChooseHometownWithNewCharname, CmdCharGen
 
 
 class CharacterCmdSet(default_cmds.CharacterCmdSet):
@@ -58,6 +58,8 @@ class AccountCmdSet(default_cmds.AccountCmdSet):
         self.add(CmdShowNewCharnameForm())
         self.add(CmdShowHometownMenuWithCharname())
         self.add(CmdChooseHometownWithNewCharname())
+        self.add(CmdCharGen())
+
 
 class UnloggedinCmdSet(default_cmds.UnloggedinCmdSet):
     """

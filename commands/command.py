@@ -32,6 +32,13 @@ class Command(BaseCommand):
     #
     pass
 
+class CmdCharGen(BaseCommand):
+    key = "chargen"
+    locks = "cmd:pperm(Player)"
+
+    def func(self):
+        self.msg('chargen')
+
 class CmdShowNewCharnameForm(BaseCommand):
 
     key = "shownewcharnameform"
