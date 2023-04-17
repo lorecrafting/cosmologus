@@ -105,7 +105,7 @@ class Account(DefaultAccount):
 
     But in the center of this cosmic flower, you sit, with the power, to choose a path and write a tale that will live on beyond the veil.
 
-    So step forward, and take your place In this universe of infinite space
+    So step forward, and take your place in this universe of infinite space
 
     {characters}
 
