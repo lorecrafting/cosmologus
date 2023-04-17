@@ -37,7 +37,7 @@ class CmdCharGen(BaseCommand):
     locks = "cmd:pperm(Player)"
 
     def func(self):
-        self.msg('chargen')
+        self.msg('chargenWOOT')
 
 class CmdShowNewCharnameForm(BaseCommand):
 
