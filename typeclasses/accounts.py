@@ -109,7 +109,7 @@ class Account(DefaultAccount):
 
     {characters}
 
-    If you so please, |w|u|lcshownewcharnameform|ltCreate a new soul|n|le unique and true, and let your journey begin anew.
+    If you so please, |w|u|lcchargen|ltCreate a new soul|n|le unique and true, and let your journey begin anew.
     """.strip()
     # |whelp|n - more commands
     # |wpublic <text>|n - talk on public channel
