@@ -6,7 +6,6 @@ from evennia.utils.evmenu import EvMenu
 from evennia.objects.models import ObjectDB
 
 
-
 def node_choose_name(caller, raw_input, **kwargs):
     text = ""
     options = {"key": "_default",
@@ -62,8 +61,6 @@ def _create_new_char_in_hometown(caller, raw_input, **kwargs):
     print(new_character)
     caller.msg(new_character)
 
-
-
     if hometown == 'ashenholme':
         caller.msg("dreams of ashenholme")
     elif hometown == 'verdantus':
@@ -71,9 +68,11 @@ def _create_new_char_in_hometown(caller, raw_input, **kwargs):
     elif hometown == 'aurelia':
         caller.msg("dreams of aurelia")
 
+    caller.msg(
+        f"Let it be known that a new soul by the name of {name} has been incarnated into {hometown}!")
 
-    caller.msg(f"You chose {hometown} with the name of {name}")
     return "node_end"
+
 
 def _create_character(self, *args, **kwargs):
     """
