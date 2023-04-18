@@ -58,9 +58,10 @@ def _create_new_char_in_hometown(caller, raw_input, **kwargs):
     hometown = kwargs.get("hometown")
     name = kwargs.get("name")
     new_character = _create_character(caller, key=name)
-    print(new_character)
-    caller.msg(new_character)
 
+
+    # Waking up dream sequence for each town, put in text, with option to wake up
+    # Wake up node will puppet, IC, then end EV menu
     if hometown == 'ashenholme':
         caller.msg("dreams of ashenholme")
     elif hometown == 'verdantus':
