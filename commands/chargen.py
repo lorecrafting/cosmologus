@@ -60,7 +60,6 @@ def _create_new_char_in_hometown(caller, raw_input, **kwargs):
     new_character, errs = _create_character(caller, key=name)
 
     # TODO: Handle error if new char creation fails, err is in the returning second item of the tuple
-    print(new_character)
 
     if errs:
         caller.msg(errs)
@@ -71,17 +70,14 @@ def _create_new_char_in_hometown(caller, raw_input, **kwargs):
         home = ObjectDB.objects.get_id(settings.ASHENHOLME_START_LOCATION)
         new_character.home = home
         new_character.move_to(home)
-        caller.msg("dreams of ashenholme")
     elif hometown == 'verdantus':
         home = ObjectDB.objects.get_id(settings.VERDANTUS_START_LOCATION)
         new_character.home = home
         new_character.move_to(home)
-        caller.msg("dreams of verdantus")
     elif hometown == 'aurelia':
         home = ObjectDB.objects.get_id(settings.AURELIA_START_LOCATION)
         new_character.home = home
         new_character.move_to(home)
-        caller.msg("dreams of aurelia")
 
     caller.msg(
         f"Let it be known that a new soul by the name of {name} has been incarnated into {hometown}!")
