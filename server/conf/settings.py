@@ -39,6 +39,10 @@ AUTO_PUPPET_ON_LOGIN = False
 MAX_NR_CHARACTERS = 3
 MAX_NR_SIMULTANEOUS_PUPPETS = 1
 
+ASHENHOLME_START_LOCATION = '#5'
+AURELIA_START_LOCATION = '#6'
+VERDANTUS_START_LOCATION = '#7'
+
 
 ######################################################################
 # Settings given in secret_settings.py override those in this file.

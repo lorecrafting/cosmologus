@@ -17,6 +17,7 @@ def node_choose_name(caller, raw_input, **kwargs):
 
     return text, options
 
+
 def node_show_hometowns(caller, raw_input, **kwargs):
     text = "From the cosmic void, you see three visions aglow, Each calling out to you, with its tale to bestow."
 
@@ -31,7 +32,7 @@ def node_show_hometowns(caller, raw_input, **kwargs):
                     Its people plagued by sickness, poverty, and warfare.
                     Their once-thriving home now reduced to rubble and decay,
                     They plead for a hero to rise and show them the way.\n""",
-         "goto": ("_create_new_char_in_hometown", {"hometown": "ashenholm", "name": name})},
+         "goto": ("_create_new_char_in_hometown", {"hometown": "ashenholme", "name": name})},
         {"key": "Verdantus",
          "desc": """An abode nestled in a once-lush forest serene,
                     Now barren, withered, and lifeless, a stark and desolate scene.
@@ -52,6 +53,10 @@ def node_show_hometowns(caller, raw_input, **kwargs):
 def _create_new_char_in_hometown(caller, raw_input, **kwargs):
     hometown = kwargs.get("hometown")
     name = kwargs.get("name")
+
+    if hometown == 'ashenholme':
+        caller.msg("dreams of sanity")
+
     caller.msg(f"You chose {hometown} with the name of {name}")
     return "node_end"
 
