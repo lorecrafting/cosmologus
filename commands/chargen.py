@@ -1,5 +1,5 @@
 from django.conf import settings
-from evennia import search_object
+from evennia.objects.models import ObjectDB
 from evennia.commands.command import Command as BaseCommand
 from evennia.utils import class_from_module
 from evennia.utils.evmenu import EvMenu
@@ -57,16 +57,30 @@ def node_show_hometowns(caller, raw_input, **kwargs):
 def _create_new_char_in_hometown(caller, raw_input, **kwargs):
     hometown = kwargs.get("hometown")
     name = kwargs.get("name")
-    new_character = _create_character(caller, key=name)
+    new_character, errs = _create_character(caller, key=name)
 
+    # TODO: Handle error if new char creation fails, err is in the returning second item of the tuple
+    print(new_character)
+
+    if errs:
+        caller.msg(errs)
 
     # Waking up dream sequence for each town, put in text, with option to wake up
     # Wake up node will puppet, IC, then end EV menu
     if hometown == 'ashenholme':
+        home = ObjectDB.objects.get_id(settings.ASHENHOLME_START_LOCATION)
+        new_character.home = home
+        new_character.move_to(home)
         caller.msg("dreams of ashenholme")
     elif hometown == 'verdantus':
+        home = ObjectDB.objects.get_id(settings.VERDANTUS_START_LOCATION)
+        new_character.home = home
+        new_character.move_to(home)
         caller.msg("dreams of verdantus")
     elif hometown == 'aurelia':
+        home = ObjectDB.objects.get_id(settings.AURELIA_START_LOCATION)
+        new_character.home = home
+        new_character.move_to(home)
         caller.msg("dreams of aurelia")
 
     caller.msg(
