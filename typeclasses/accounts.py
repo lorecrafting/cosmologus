@@ -173,7 +173,7 @@ class Account(DefaultAccount):
         txt_sessions = "|wConnected session(s):|n\n" + "\n".join(sess_strings)
 
         if not characters:
-            txt_characters = "You don't have a character yet. Use |wcharcreate|n."
+            txt_characters = ""
         else:
             max_chars = (
                 "unlimited"
