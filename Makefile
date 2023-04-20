@@ -2,4 +2,4 @@ dev:
 	evennia start && evennia --istart --log
 
 watch:
-	find ./ -type f -not -path "./server" | entr sh -c 'evennia collectstatic --noinput && evennia reload'
+	find ./ -type f -not -path "./server" | entr sh -c 'evennia reload'
